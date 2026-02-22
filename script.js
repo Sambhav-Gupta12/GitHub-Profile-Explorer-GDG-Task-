@@ -39,12 +39,20 @@ function displayUser(userData){
 
  function displayRepos(repoData){
 
+    if(repoData.length === 0){
+        reposDiv.innerHTML = `<div class="no">No public repositories found</div>`
+    }
+
      reposDiv.innerHTML = repoData.map(repo =>
                 `<div class="repo">
                  <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repoName">${repo.name}</a>
                  <div class="des">${repo.description}
                  </div>
+                 <div class="flex">
                  <div class="lang">${repo.language}</div>
+                 <div class="stars">Stars: ${repo.stargazers_count}</div>
+                 <div class="forks">Forks: ${repo.forks_count}</div>
+                 </div>
                  <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="link">Visit</a>
              </div>`
     ).join("")

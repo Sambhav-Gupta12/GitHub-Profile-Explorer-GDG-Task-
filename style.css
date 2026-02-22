@@ -89,7 +89,7 @@ body {
 .profile{
     display: none;
     margin-top: 30px;
-    height: 20vh;
+    height: 140px;
     width: 40vw;
     background-color: #161b22;
     margin-left: auto;
@@ -105,8 +105,8 @@ body {
 }
 
 .avatar img{
-    height: 20vh;
-    width: 10vw;
+    height: 142px;
+    width: 142px;
     border-radius: 100px;
 }
 
@@ -191,7 +191,30 @@ body {
     scrollbar-width: none;
 }
 
+.flex{
+    display: flex;
+    gap: 3.4vw;
+}
+
 .lang{
+    font-family: sans-serif;
+    font-size: 1vw;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    color: rgb(195, 195, 198);
+}
+
+.stars{
+    font-family: sans-serif;
+    font-size: 1vw;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    color: rgb(195, 195, 198);
+}
+
+.forks{
     font-family: sans-serif;
     font-size: 1vw;
     font-weight: 500;
@@ -228,4 +251,73 @@ body {
     background:
     linear-gradient(#1f242c, #262d36) padding-box,
     linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853) border-box;
+}
+
+.no{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1.4vw;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    color: white;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .search{
+        width: 85vw;
+        height: 12vh;
+    }
+
+    #userName{
+        width: 60vw;
+    }
+
+    #searchbtn{
+        width: 30vw;
+        height: 7vh;
+    }
+
+    .profile{
+        width: 85vw;
+        height: 13vh;
+
+    }
+
+    .avatar{
+        gap: 5vw;
+    }
+
+    .avatar img{
+        width: 25vw;
+        height: 25vw;
+        position: relative;
+        bottom: 2px;
+    }
+
+    .name{
+        font-size: 6vw;
+        -webkit-text-stroke: 1px white;
+        margin-bottom: 1vh;
+    }
+
+    .bio{
+        height: 4.8vh;
+        font-size: 4vw;
+        margin-bottom: 1vh;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        line-height: 2vh;
+    }
+
+    .follow{
+        font-size: 3.5vw;
+        line-height: 2vh;
+    }
+
+    .repos{
+        grid-template-columns: 1fr;
+    }
+    
 }
