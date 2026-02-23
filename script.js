@@ -6,24 +6,26 @@ const reposDiv = document.querySelector(".repos");
 async function fetchUser(username) {
     const response = await fetch(` https://api.github.com/users/${username}`);
 
-    if (!response.ok){
-        throw new Error("User not found");
+    if (!response.ok) {
+
+        // throw new Error("User not found");
+        return null;
     }
 
     return response.json();
 }
 
 async function fetchRepos(userRepos) {
-    const response = await fetch(` https://api.github.com/users/${userRepos}/repos?sort=updated&per_page=6`);
+    const response = await fetch(`https://api.github.com/users/${userRepos}/repos?sort=updated&per_page=6`);
 
-    if (!response.ok){
+    if (!response.ok) {
         throw new Error("Failed to fetch repositories");
     }
 
     return response.json();
 }
 
-function displayUser(userData){
+function displayUser(userData) {
     profileDiv.style.display = "block"
     profileDiv.innerHTML = `<div class="avatar">
                 <img src="${userData.avatar_url}"
@@ -37,14 +39,15 @@ function displayUser(userData){
             </div>`
 }
 
- function displayRepos(repoData){
+function displayRepos(repoData) {
 
-    if(repoData.length === 0){
+    if (repoData.length == 0) {
         reposDiv.innerHTML = `<div class="no">No public repositories found</div>`
+        return;
     }
 
-     reposDiv.innerHTML = repoData.map(repo =>
-                `<div class="repo">
+    reposDiv.innerHTML = repoData.map(repo =>
+        `<div class="repo">
                  <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repoName">${repo.name}</a>
                  <div class="des">${repo.description}
                  </div>
@@ -56,14 +59,25 @@ function displayUser(userData){
                  <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="link">Visit</a>
              </div>`
     ).join("")
- }
+}
 
 searchbtn.addEventListener("click", async () => {
+
+    setTimeout(() => {
+        reposDiv.style.display = "grid";
+    }, 300);
 
     const userNameInput = userName.value.trim();
 
     const user = await fetchUser(userNameInput);
     console.log(user);
+
+    if (!user) {
+        profileDiv.style.display = "block";
+        profileDiv.innerHTML = `<div class= "notFound">User not found</div>`;
+        reposDiv.style.display = "none";
+        return;
+    }
 
     const repos = await fetchRepos(userNameInput);
     console.log(repos);
