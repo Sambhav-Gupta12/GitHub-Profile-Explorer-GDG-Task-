@@ -29,6 +29,9 @@ body {
     -webkit-text-fill-color: transparent;
     color: transparent;
     text-align: center;
+    width: 335px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .search {
@@ -367,5 +370,15 @@ body {
     .no{
         font-size: 5vw;
     }
+
+    .notFound{
+        line-height: 13.5vh;
+    }
     
+}
+
+@media only screen and (max-width: 335px){
+    .title{
+        font-size: 8vw;
+    }
 }
