@@ -1,8 +1,10 @@
+//Getting elements from HTML
 const userName = document.getElementById("userName");
 const searchbtn = document.getElementById("searchbtn");
 const profileDiv = document.querySelector(".profile");
 const reposDiv = document.querySelector(".repos");
 
+//Function for fetching User Profile
 async function fetchUser(username) {
     const response = await fetch(` https://api.github.com/users/${username}`);
 
@@ -15,6 +17,7 @@ async function fetchUser(username) {
     return response.json();
 }
 
+//Function for fetching User's Repositories
 async function fetchRepos(userRepos) {
     const response = await fetch(`https://api.github.com/users/${userRepos}/repos?sort=updated&per_page=6`);
 
@@ -25,6 +28,7 @@ async function fetchRepos(userRepos) {
     return response.json();
 }
 
+//Function for Displaying fetched Profile Data
 function displayUser(userData) {
     profileDiv.style.display = "block"
     profileDiv.innerHTML = `<div class="avatar">
@@ -39,6 +43,7 @@ function displayUser(userData) {
             </div>`
 }
 
+//Function for Displaying User's Repositories
 function displayRepos(repoData) {
 
     if (repoData.length == 0) {
@@ -61,11 +66,8 @@ function displayRepos(repoData) {
     ).join("")
 }
 
+//Event listener for Search button using for giving inputs to fetch fuctions and calling display fuctions
 searchbtn.addEventListener("click", async () => {
-
-    setTimeout(() => {
-        reposDiv.style.display = "grid";
-    }, 300);
 
     const userNameInput = userName.value.trim();
 
@@ -84,4 +86,6 @@ searchbtn.addEventListener("click", async () => {
 
     displayUser(user);
     displayRepos(repos);
+
+    reposDiv.style.display = "grid";
 })
